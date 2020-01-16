@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Edit Profile </title>
+<link rel="stylesheet" href={{ url_for('static', filename='css/editProfile.css') }} />
+<link rel="stylesheet" href={{ url_for('static', filename='css/topStyle.css') }} />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="title">
+	<form>
+		<input id="searchBox" type="text" name="searchQuery">
+		<input id="searchButton" type="submit" value="Search">
+	</form>
+
+	{% if not loggedIn %}
+	<div id="signInButton">
+		<a class="link" href="/loginForm">Sign In</a>
+	</div>
+	{% else %}
+	<div class="dropdown">
+		<button class="dropbtn">Hello, <br>{{firstName}}</button>
+		<div class="dropdown-content">
+			<a href="/account/orders">Your orders</a>
+			<a href="/account/profile">Your profile</a>
+			<hr>
+			<a href="/logout">Sign Out</a>
+		</div>
+	</div>
+	{% endif %}
+	<div id="kart">
+		<a class="link" href="/cart">
+			<img src={{url_for('static', filename='images/shoppingCart.png')}} id="cartIcon" />
+			CART {{noOfItems}}
+		</a>
+	</div>
+</div>
+
+<div class="display">
+	<h2>Edit profile</h2>
+	<form action="/updateProfile" method="POST">
+		<div id="login">
+	      <h3 class="text-center text-white pt-5">Edit Profile</h3>
+	      <div class="container">
+	          <div id="login-row" class="row justify-content-center align-items-center">
+	              <div id="login-column" class="col-md-6">
+	                  <div id="login-box" class="col-md-12">
+	                      <form id="login-form" class="form" action="" method="post">
+	                          <h3 class="text-center text-info">Edit</h3>
+	                          <div class="form-group">
+	                              <label for="username" class="text-info">Email:</label><br>
+	                              <input type="email" name="username" id="username" value="{{profileData[1]}}" class="form-control" readonly="readonly">
+	                          </div>
+
+
+
+														<div class="form-group">
+																<label for="username" class="text-info">First Name:</label><br>
+																<input type="text" name="firstName" id="username" value="{{profileData[2]}}" class="form-control">
+														</div>
+														<div class="form-group">
+																<label for="username" class="text-info">Last Nmae:</label><br>
+																<input type="text" name="lastName" id="username" value="{{profileData[3]}}" class="form-control">
+														</div>
+														<div class="form-group">
+																<label for="username" class="text-info">Address Line1:</label><br>
+																<input type="text" name="address1" id="username" value="{{profileData[4]}}" class="form-control">
+														</div>
+														<div class="form-group">
+																<label for="username" class="text-info">Address Line2:</label><br>
+																<input type="text" name="address2" id="username" value="{{profileData[5]}}"class="form-control">
+														</div>
+														<div class="form-group">
+																<label for="username" class="text-info">Zipcode:</label><br>
+																<input type="text" name="zipcode" id="username" value="{{profileData[6]}}" class="form-control">
+														</div>
+														<div class="form-group">
+																<label for="username" class="text-info">City:</label><br>
+																<input type="text" name="city" id="username" value="{{profileData[7]}}" class="form-control">
+														</div>
+														<div class="form-group">
+																<label for="username" class="text-info">State:</label><br>
+																<input type="text" name="state" id="username" value="{{profileData[8]}}" class="form-control">
+														</div>
+														<div class="form-group">
+																<label for="username" class="text-info">Country:</label><br>
+																<input type="text" name="country" id="username" value="{{profileData[9]}}" class="form-control">
+														</div>
+														<div class="form-group">
+																<label for="username" class="text-info">Phone Number:</label><br>
+																<input type="text" name="phone" id="username" value="{{profileData[10]}}" class="form-control">
+														</div>
+	                          <div class="form-group">
+	                              <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+	                              <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+	                          </div>
+
+	                      </form>
+	                  </div>
+	              </div>
+	          </div>
+	      </div>
+	  </div>
+<input type="submit" value="Save">
+
+	</form>
+</div>
+</body>
+</html>
